@@ -25,8 +25,8 @@ class MainProvider extends ChangeNotifier{
 
   changeStatusUser(String userId, String status, int index) async{
     try{
-      listPendingVendor.removeAt(index);
       await mainControllers.changeStatusUser(status, userId);
+      listPendingVendor.removeAt(index);
     }catch(e){
       print("Fail to change status user provider");
       throw Exception(e.toString());
@@ -47,13 +47,22 @@ class MainProvider extends ChangeNotifier{
     return listCate;
   }
 
-  addCate(String cateName, File img) async{
-    try{
+  addCate(String cateName, File img) async {
+    try {
       await mainControllers.addCategory(cateName, img);
-    }catch(e){
+    } catch (e) {
       throw Exception(e);
-    }finally{
+    } finally {
       notifyListeners();
     }
+  }
+
+  editCate(String cateId, String cateName, File img) async{
+    try {
+      await mainControllers.editCategory(
+          cateId, cateName, img);
+    } catch (e) {
+      throw Exception(e.toString());
+    } finally {}
   }
 }

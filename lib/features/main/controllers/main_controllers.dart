@@ -30,6 +30,8 @@ class MainControllers implements IMain{
       "user" : userId,
       "status" : status
     });
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    print(data);
   }
 
   @override
@@ -49,6 +51,17 @@ class MainControllers implements IMain{
       "image" : img
     }, nameFieldImage: "image");
     final Map<String, dynamic> data = jsonDecode(response.body);
+    return data['status'];
+  }
+
+  @override
+  Future<int> editCategory(String cateId, String cateName, File img) async {
+    final response = await apiService.patchFormData(url: "category/$cateId", params: {
+      "name" : cateName,
+      "image" : img
+    }, nameFieldImage: 'image');
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    print(data);
     return data['status'];
   }
 }

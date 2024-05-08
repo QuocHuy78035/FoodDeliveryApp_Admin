@@ -8,4 +8,5 @@ abstract class IMain {
   Future changeStatusUser(String status, String userId);
   Future<List<Category>> getAllCategory();
   Future<int> addCategory(String cateName, File img);
+  Future<int> editCategory(String cateId, String cateName, File img);
 }

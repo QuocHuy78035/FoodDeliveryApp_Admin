@@ -1,3 +1,4 @@
+import 'package:ddnangcao_project/features/main/views/category/edit_category_screen.dart';
 import 'package:ddnangcao_project/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -71,9 +72,23 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         shrinkWrap: true,
                         itemCount: listCate.length,
                         itemBuilder: (context, index) {
-                          return CategoryItem(
-                            imageUrl: listCate[index].image,
-                            name: listCate[index].name,
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EditCategoryScreen(
+                                    cateId: listCate[index].id,
+                                    cateName: listCate[index].name,
+                                    imageUrl: listCate[index].image,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: CategoryItem(
+                              imageUrl: listCate[index].image,
+                              name: listCate[index].name,
+                            ),
                           );
                         },
                       )
